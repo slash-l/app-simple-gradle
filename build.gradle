@@ -17,6 +17,9 @@ buildscript {
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4+"
     }
 }
+dependencies {
+    implementation group: 'com.alibaba', name: 'fastjson', version: '1.2.24'
+}
 
 allprojects {
     apply plugin: 'com.jfrog.artifactory'
