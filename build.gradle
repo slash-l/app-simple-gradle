@@ -1,6 +1,8 @@
 apply plugin: 'java'
 apply plugin: 'maven-publish'
 
+// 如果构建脚本需要使用外部库，可以将它们添加到 script’s classpath 本身的脚本类路径中。
+// 你可以使用 buildscript() 方法，传入一个声明构建脚本类路径的块。
 buildscript {
     repositories {
         maven {
@@ -54,6 +56,7 @@ artifactory {
             properties = ['qa.level': 'basic', 'dev.team' : 'core']
             // Publish generated POM files to Artifactory (true by default)
             publishPom = true
+            publishBuildInfo = true   //Publish build-info to Artifactory (true by default)
         }
     }
     resolve {
@@ -65,4 +68,8 @@ artifactory {
 
         }
     }
+
+    clientConfig.setIncludeEnvVars(true)
+    clientConfig.info.addEnvironmentProperty('test.adding.dynVar',new java.util.Date().toString())
+
 }
