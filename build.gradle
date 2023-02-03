@@ -2,7 +2,7 @@ apply plugin: 'java'
 
 buildscript {
     repositories {
-        jcenter()
+        mavenCentral()
     }
 }
 
@@ -14,7 +14,6 @@ version = currentVersion
 
 allprojects {
     repositories {
-        google()
-        jcenter() //代码托管库：设置之后可以在项目中轻松引用jcenter上的开源项目
+        mavenCentral() //代码托管库：设置之后可以在项目中轻松引用jcenter上的开源项目
     }
 }
