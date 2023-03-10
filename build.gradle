@@ -56,7 +56,7 @@ artifactory {
             properties = ['qa.level': 'basic', 'dev.team' : 'core']
             // Publish generated POM files to Artifactory (true by default)
             publishPom = true
-            publishBuildInfo = true   //Publish build-info to Artifactory (true by default)
+            //publishBuildInfo = true   //Publish build-info to Artifactory (true by default)
         }
     }
     resolve {
