@@ -4,7 +4,7 @@ node {
     def buildInfo = Artifactory.newBuildInfo()
 
     stage ('Code Check out') {
-        git url: 'https://gitee.com/mumu79/app-gradle-single.git'
+        git url: 'git@github.com:slash-l/app-simple-gradle.git'
     }
 
     stage ('Artifactory configuration') {
