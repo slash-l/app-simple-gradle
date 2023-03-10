@@ -28,19 +28,17 @@ node {
     }
 
     stage ("Xray scan") {
-        stage('Xray Scan') {
-            def xrayConfig = [
-                    'buildName': env.JOB_NAME,
-                    'buildNumber': env.BUILD_NUMBER,
-                    'failBuild': false
-            ]
-            def xrayResults = server.xrayScan xrayConfig
+        def xrayConfig = [
+                'buildName': env.JOB_NAME,
+                'buildNumber': env.BUILD_NUMBER,
+                'failBuild': false
+        ]
+        def xrayResults = server.xrayScan xrayConfig
 //          echo xrayResults as String
-            xrayurl = readJSON text:xrayResults.toString()
+        xrayurl = readJSON text:xrayResults.toString()
 //          echo xrayurl as String
-            rtGradle.deployer.addProperty("scan", "true")
-            rtGradle.deployer.addProperty("xrayresult.summary.total_alerts", xrayurl.summary.total_alerts as String)
-        }
+        rtGradle.deployer.addProperty("scan", "true")
+        rtGradle.deployer.addProperty("xrayresult.summary.total_alerts", xrayurl.summary.total_alerts as String)
     }
 
     stage ("Promotion") {
@@ -61,9 +59,9 @@ node {
                 // Indicates whether to promote the build dependencies, in addition to the artifacts. False by default
                 'includeDependencies': true,
                 // Indicates whether to copy the files. Move is the default
-                'copy'               : true,
+                'copy'               : false
                 // Indicates whether to fail the promotion process in case of failing to move or copy one of the files. False by default.
-                'failFast'           : true
+//                'failFast'           : true
         ]
 
         // Promote build
