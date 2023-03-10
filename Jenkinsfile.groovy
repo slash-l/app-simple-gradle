@@ -41,29 +41,21 @@ node {
         rtGradle.deployer.addProperty("xrayresult.summary.total_alerts", xrayurl.summary.total_alerts as String)
     }
 
-    stage ("Promotion") {
-        def promotionConfig = [
-                // Mandatory parameters
-                'targetRepo'         : 'slash-gradle-test-local',
-
-                // Optional parameters
-                // The build name and build number to promote. If not specified, the Jenkins job's build name and build number are used
+    stage ('Promotion') {
+        promotionConfig = [
+                //Mandatory parameters
                 'buildName'          : buildInfo.name,
                 'buildNumber'        : buildInfo.number,
+                'targetRepo'         : 'slash-gradle-test-local',
 
-                // Comment and Status to be displayed in the Build History tab in Artifactory
+                //Optional parameters
                 'comment'            : 'this is the promotion comment',
-
-                // Specifies the source repository for build artifacts.
                 'sourceRepo'         : 'slash-gradle-dev-local',
-                // Indicates whether to promote the build dependencies, in addition to the artifacts. False by default
+                'status'             : 'Released',
                 'includeDependencies': true,
-                // Indicates whether to copy the files. Move is the default
+                'failFast'           : true,
                 'copy'               : false
-                // Indicates whether to fail the promotion process in case of failing to move or copy one of the files. False by default.
-//                'failFast'           : true
         ]
-
         // Promote build
         server.promote promotionConfig
     }
