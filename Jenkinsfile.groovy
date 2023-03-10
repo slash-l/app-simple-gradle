@@ -23,10 +23,6 @@ node {
         rtGradle.deployer.addProperty("status", "in-qa").addProperty("compatibility", "1", "2", "3")
     }
 
-    stage ('Publish') {
-        server.publishBuildInfo buildInfo
-    }
-
     stage ("Xray scan") {
         def xrayConfig = [
                 'buildName': env.JOB_NAME,
@@ -39,6 +35,10 @@ node {
 //          echo xrayurl as String
         rtGradle.deployer.addProperty("scan", "true")
         rtGradle.deployer.addProperty("xrayresult.summary.total_alerts", xrayurl.summary.total_alerts as String)
+    }
+
+    stage ('Publish') {
+        server.publishBuildInfo buildInfo
     }
 
     stage ('Promotion') {
