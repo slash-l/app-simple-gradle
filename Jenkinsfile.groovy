@@ -49,12 +49,10 @@ node {
                 'targetRepo'         : 'slash-gradle-test-local',
 
                 // Optional parameters
-
                 // The build name and build number to promote. If not specified, the Jenkins job's build name and build number are used
                 'buildName'          : buildInfo.name,
                 'buildNumber'        : buildInfo.number,
-                // Only if this build is associated with a project in Artifactory, set the project key as follows.
-                'project': 'my-project-key',
+
                 // Comment and Status to be displayed in the Build History tab in Artifactory
                 'comment'            : 'this is the promotion comment',
                 'status'             : 'Released',
@@ -71,4 +69,5 @@ node {
         // Promote build
         server.promote promotionConfig
     }
+
 }
