@@ -53,7 +53,7 @@ node {
 
                 // Comment and Status to be displayed in the Build History tab in Artifactory
                 'comment'            : 'this is the promotion comment',
-                'status'             : 'Released',
+
                 // Specifies the source repository for build artifacts.
                 'sourceRepo'         : 'slash-gradle-dev-local',
                 // Indicates whether to promote the build dependencies, in addition to the artifacts. False by default
