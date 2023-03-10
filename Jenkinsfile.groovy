@@ -44,8 +44,8 @@ node {
     stage ('Promotion') {
         promotionConfig = [
                 //Mandatory parameters
-                'buildName'          : buildInfo.name,
-                'buildNumber'        : buildInfo.number,
+                'buildName'          : env.JOB_NAME,
+                'buildNumber'        : env.BUILD_NUMBER,
                 'targetRepo'         : 'slash-gradle-test-local',
 
                 //Optional parameters
