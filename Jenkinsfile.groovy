@@ -43,25 +43,4 @@ node {
         rtGradle.deployer.deployArtifacts buildInfo
     }
 
-
-
-    stage ('Promotion') {
-        promotionConfig = [
-                //Mandatory parameters
-                'buildName'          : env.JOB_NAME,
-                'buildNumber'        : env.BUILD_NUMBER,
-                'targetRepo'         : 'slash-gradle-test-local',
-
-                //Optional parameters
-                'comment'            : 'this is the promotion comment',
-                'sourceRepo'         : 'slash-gradle-dev-local',
-                'status'             : 'Released',
-                'includeDependencies': true,
-                'failFast'           : true,
-                'copy'               : false
-        ]
-        // Promote build
-        server.promote promotionConfig
-    }
-
 }
